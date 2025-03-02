@@ -36,8 +36,8 @@ services:
     volumes:
       - ${APP_DATA_DIR}/data/nextcloud:/var/www/html
     environment:
-      - MYSQL_HOST=nextcloud_db_1
-      - REDIS_HOST=nextcloud_redis_1
+      - MYSQL_HOST=aitronz-nextcloud_db_1
+      - REDIS_HOST=aitronz-nextcloud_redis_1
       - MYSQL_PASSWORD=moneyprintergobrrr
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
