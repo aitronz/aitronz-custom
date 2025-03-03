@@ -1,11 +1,6 @@
 version: "3.7"
 
 services:
-    app_proxy:
-        environment:
-            APP_HOST: aitronz-zeronet_zeronet_1
-            APP_PORT: 43110
-            PROXY_AUTH_ADD: "false"
     zeronet:
         environment:
             - ENABLE_TOR=true
