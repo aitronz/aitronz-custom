@@ -7,6 +7,8 @@ services:
             APP_PORT: 43110
             PROXY_AUTH_ADD: "false"
     zeronet:
+        environment:
+            - ENABLE_TOR=true
         volumes:
             - /home/umbrel/umbrel/app-data/aitronz-zeronet/data:/root/data
         ports:
