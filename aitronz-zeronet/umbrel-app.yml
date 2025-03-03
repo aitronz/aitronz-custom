@@ -1,0 +1,22 @@
+manifestVersion: 1.1
+id: aitronz-zeronet
+category: files
+name: Zeronet
+version: "1"
+tagline: Productivity platform that keeps you in control
+description: ZeroNet Service
+releaseNotes: https://zeronet.io
+developer: https://zeronet.io
+website: https://zeronet.io
+dependencies: []
+repo: https://zeronet.io
+support: https://zeronet.io
+port: 15441
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
+path: ""
+torOnly: false
+submitter: Aitronz
+submission: https://github.com/getumbrel/umbrel/commit/dcaae95daa8ee3d7e8044d55d13887d8ff353030

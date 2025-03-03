@@ -1,0 +1,9 @@
+name: zeronet
+services:
+    zeronet:
+        volumes:
+            - /home/umbrel/umbrel/app-data/aitronz-zeronet/data:/root/data
+        ports:
+            - 15441:15441
+            - 127.0.0.1:43110:43110
+        image: nofish/zeronet
