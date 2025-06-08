@@ -25,7 +25,7 @@ services:
     platform: linux/amd64
     restart: unless-stopped
     # CORRECTED COMMAND: Use the supported --tor_password argument.
-    command: sh -c 'python3 zeronet.py --tor "always" --tor_controller "tor:9051" --tor_password "$$TOR_CONTROL_PASSWD"'
+    command: sh -c 'python3 zeronet.py --tor_controller "tor:9051" --tor_password "$$TOR_CONTROL_PASSWD"'
     environment:
       # Pass the password variable into the container.
       - TOR_CONTROL_PASSWD
