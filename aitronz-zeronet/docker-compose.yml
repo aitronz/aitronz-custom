@@ -5,13 +5,16 @@ services:
     image: osminogin/tor-simple
     container_name: tor-simple
     restart: always
+    # This command hashes the password from the .env file and starts Tor.
+    command: sh -c 'tor --HashedControlPassword "$$(tor --quiet --hash-password "$$TOR_CONTROL_PASSWD")"'
+    environment:
+      # Pass the password variable into the container.
+      - TOR_CONTROL_PASSWD
     ports:
       - "9050:9050"
       - "9051:9051"
     volumes:
-      # This volume will store Tor's state, including the auth cookie.
       - tor-data:/var/lib/tor
-      # Mount your torrc file. Ensure it has 'ControlPort 9051' and 'CookieAuthentication 1'
       - ${APP_DATA_DIR}/torrc:/etc/tor/torrc:ro
     networks:
       - 0net-network
@@ -21,15 +24,16 @@ services:
     container_name: zeronet
     platform: linux/amd64
     restart: unless-stopped
-    # CORRECTED COMMAND: Removed the incorrect '/app/' path.
-    # We just call 'zeronet.py' directly, as it's in the container's working directory.
-    command: sh -c 'python3 zeronet.py --tor "always" --tor_controller "tor:9051" --tor_cookie /var/lib/tor/control_auth_cookie'
+    # CORRECTED COMMAND: Use the supported --tor_password argument.
+    command: sh -c 'python3 zeronet.py --tor "always" --tor_controller "tor:9051" --tor_password "$$TOR_CONTROL_PASSWD"'
+    environment:
+      # Pass the password variable into the container.
+      - TOR_CONTROL_PASSWD
     networks:
       - 0net-network
     volumes:
+      # The tor-data volume is NOT needed here, as we are not using cookies.
       - ${APP_DATA_DIR}/data:/root/data
-      # Mount the shared Tor data volume in read-only mode to access the cookie.
-      - tor-data:/var/lib/tor:ro
     ports:
       - "15441:15441"
       - "43112:43110"
