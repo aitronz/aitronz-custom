@@ -22,6 +22,7 @@ services:
       - 0net-network
     volumes:
       - ${APP_DATA_DIR}/data:/root/data
+      - tor-data:/var/lib/tor
     ports:
       - "15441:15441"
       - "43112:43110"
