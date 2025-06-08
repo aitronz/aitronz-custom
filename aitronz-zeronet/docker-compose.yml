@@ -1,55 +1,34 @@
-version: '3'
+version: '3.8'
 
 services:
   tor:
-    tty: true
-    stdin_open: true
-    build:
-      context: ..
-      dockerfile: docker/tor.Dockerfile
+    image: osminogin/tor-simple
+    container_name: tor-simple
+    restart: always
+    ports:
+      - "127.0.0.1:9050:9050"
+    volumes:
+      - tor-data:/var/lib/tor
     networks:
       - 0net-network
-    environment: &tor-environments
-      # since we are using tor internally, password doesn't really matter
-      TOR_CONTROL_PASSWD: some_password
-      TOR_SOCKS_PORT: 9050
-      TOR_CONTROL_PORT: 9051
-
-  0net-conservancy:
-    tty: true
-    stdin_open: true
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile
+  
+  zeronet:
+    image: nofish/zeronet
+    container_name: zeronet
+    platform: linux/amd64
     networks:
       - 0net-network
     volumes:
-      # NOTE: this refers to docker/data..
-      - ./data:/home/service-0net/data
+      - ${APP_DATA_DIR}/data:/root/data
     ports:
-      - "26552:26552"
-      - "127.0.0.1:43110:43110"
+      - "15441:15441"
+      - "127.0.0.1:43112:43110"
+    restart: unless-stopped
     depends_on:
       - tor
-    environment:
-      TOR_ENABLED: enable
-      <<: *tor-environments
 
-  # integrated container with tor
-  0net-tor:
-    tty: true
-    stdin_open: true
-    build:
-      context: ..
-      dockerfile: docker/znctor.Dockerfile
-    networks:
-      - 0net-network
-    volumes:
-      # NOTE: this refers to docker/data..
-      - ./data:/home/service-0net/data
-    ports:
-      - "26552:26552"
-      - "127.0.0.1:43110:43110"
+volumes:
+  tor-data:
 
 networks:
   0net-network:

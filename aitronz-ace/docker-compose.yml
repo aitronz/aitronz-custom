@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  acexy:
+    image: ghcr.io/javinator9889/acexy
+    container_name: acexy
+    network_mode: host
+    command: ["-addr", ":7171"]
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+
+  acestream-engine:
+    image: futebas/acestream-engine-arm
+    container_name: acestream-engine
+    network_mode: host
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
