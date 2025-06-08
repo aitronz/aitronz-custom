@@ -1,10 +1,10 @@
 manifestVersion: 1.1
 id: aitronz-ace
 category: files
-name: Zeronet
+name: Acestream
 version: "1"
 tagline: Acestream and AceXY Service for Umbrel (arm)
-description: ZeroNet Service
+description: Acestream Service
 releaseNotes: https://zeronet.io
 developer: https://zeronet.io
 website: https://zeronet.io
