@@ -5,12 +5,12 @@ name: Acestream
 version: "1"
 tagline: Acestream and AceXY Service for Umbrel (arm)
 description: Acestream Service
-releaseNotes: https://zeronet.io
-developer: https://zeronet.io
-website: https://zeronet.io
+releaseNotes: https://www.acestream.org
+developer: https://www.acestream.org
+website: https://www.acestream.org
 dependencies: []
-repo: https://zeronet.io
-support: https://zeronet.io
+repo: https://www.acestream.org
+support: https://www.acestream.org
 port: 43110
 gallery:
   - 1.jpg
