@@ -6,7 +6,7 @@ services:
     container_name: tor-simple
     restart: always
     ports:
-      - "127.0.0.1:9050:9050"
+      - "9050:9050"
     volumes:
       - tor-data:/var/lib/tor
     networks:
@@ -22,7 +22,7 @@ services:
       - ${APP_DATA_DIR}/data:/root/data
     ports:
       - "15441:15441"
-      - "127.0.0.1:43112:43110"
+      - "43112:43110"
     restart: unless-stopped
     depends_on:
       - tor
