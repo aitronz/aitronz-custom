@@ -1,32 +1,41 @@
-version: '3.8'
+version: "3.8"
 
 services:
   tor:
     image: osminogin/tor-simple
     container_name: tor-simple
     restart: always
+    # No command is needed; the image's default startup is sufficient
+    # when configuration is handled by torrc.
     ports:
+      # SOCKS port for Tor traffic
       - "9050:9050"
+      # Control port for ZeroNet to communicate with Tor
       - "9051:9051"
     volumes:
+      # This volume will store Tor's state, including the auth cookie.
       - tor-data:/var/lib/tor
+      # Mount your torrc file.
       - ${APP_DATA_DIR}/torrc:/etc/tor/torrc:ro
     networks:
       - 0net-network
-  
+
   zeronet:
     image: nofish/zeronet
     container_name: zeronet
     platform: linux/amd64
+    restart: unless-stopped
+    # Command now points to the location of the auth cookie inside the container.
+    command: sh -c 'python3 /app/zeronet.py --tor "always" --tor_controller "tor:9051" --tor_cookie /var/lib/tor/control_auth_cookie'    
     networks:
       - 0net-network
     volumes:
       - ${APP_DATA_DIR}/data:/root/data
-      - tor-data:/var/lib/tor
+      # Mount the shared Tor data volume in read-only mode to access the cookie.
+      - tor-data:/var/lib/tor:ro
     ports:
       - "15441:15441"
       - "43112:43110"
-    restart: unless-stopped
     depends_on:
       - tor
 
