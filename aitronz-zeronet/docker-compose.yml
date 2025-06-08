@@ -7,8 +7,10 @@ services:
     restart: always
     ports:
       - "9050:9050"
+      - "9051:9051"
     volumes:
       - tor-data:/var/lib/tor
+      - ${APP_DATA_DIR}/torrc:/etc/tor/torrc:ro
     networks:
       - 0net-network
   
