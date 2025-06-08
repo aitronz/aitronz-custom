@@ -4,6 +4,7 @@ services:
   acexy:
     image: ghcr.io/javinator9889/acexy
     container_name: acexy
+    platform: linux/amd64
     network_mode: host
     command: ["-addr", ":7171"]
     restart: unless-stopped
