@@ -17,3 +17,5 @@ services:
     restart: unless-stopped
     tty: true
     stdin_open: true
+    depends_on:
+          - acexy
