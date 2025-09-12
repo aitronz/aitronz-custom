@@ -10,13 +10,21 @@ services:
     restart: unless-stopped
     tty: true
     stdin_open: true
+    depends_on:
+          - acestream-engine
 
   acestream-engine:
-    image: futebas/acestream-engine-arm:3.2.7.6
+    privileged: true
     container_name: acestream-engine
+    image: jopsis/acestream:arm
+    tmpfs:
+     - /dev/disk/by-id:noexec,rw,size=4k
+    environment:
+     - TZ=Europe/Madrid
     network_mode: host
-    restart: unless-stopped
-    tty: true
+    image: 'acestream-arm'
     stdin_open: true
-    depends_on:
-          - acexy
+    tty: true
+    volumes:
+     - ./acestream.conf:/acestream.engine/acestream.conf
+    restart: unless-stopped
