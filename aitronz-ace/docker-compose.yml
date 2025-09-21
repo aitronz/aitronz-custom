@@ -16,13 +16,12 @@ services:
   acestream-engine:
     privileged: true
     container_name: acestream-engine
-    image: jopsis/acestream:arm
+    image: futebas/acestream-engine-arm:3.2.7.6
     tmpfs:
      - /dev/disk/by-id:noexec,rw,size=4k
     environment:
      - TZ=Europe/Madrid
     network_mode: host
-    image: 'acestream-arm'
     stdin_open: true
     tty: true
     volumes:
