@@ -10,19 +10,9 @@ services:
     tty: true
     stdin_open: true
     depends_on:
-          - acestream-engine
-
-  acestream-engine:
-    privileged: true
-    container_name: acestream-engine
-    image: futebas/acestream-engine-arm:3.2.7.6
-    tmpfs:
-     - /dev/disk/by-id:noexec,rw,size=4k
-    environment:
-     - TZ=Europe/Madrid
-    network_mode: host
-    stdin_open: true
-    tty: true
-    volumes:
-     - ./acestream.conf:/acestream.engine/acestream.conf
-    restart: unless-stopped
+          - acestream
+  acestream:
+    container_name: acestream
+    ports:
+        - 6878:6878
+    image: jopsis/acestream:arm64-v3.2.13
