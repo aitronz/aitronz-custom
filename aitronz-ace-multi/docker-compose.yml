@@ -43,4 +43,4 @@ services:
 
 networks:
   aceserver:
-    external: true
+    driver: bridge
