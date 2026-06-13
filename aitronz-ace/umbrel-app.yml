@@ -1,22 +1,21 @@
 manifestVersion: 1.1
 id: aitronz-ace
-category: files
+category: media
 name: Acestream
-version: "1"
-tagline: Acestream and AceXY Service for Umbrel (arm)
-description: Acestream Service
-releaseNotes: https://www.acestream.org
-developer: https://www.acestream.org
-website: https://www.acestream.org
+version: "3.2.17-fix"
+tagline: Acestream Service for Umbrel (arm)
+description: Docker container for AceStream Engine with support for multiple architectures (ARM32, ARM64, x86_64). 
+releaseNotes: https://github.com/jopsis/docker-acestream-aceserve/releases
+developer: https://github.com/jopsis
+website: https://github.com/jopsis/docker-acestream-aceserve
 dependencies: []
-repo: https://www.acestream.org
-support: https://www.acestream.org
-port: 43110
+repo: https://github.com/jopsis/docker-acestream-aceserve
+support: https://github.com/jopsis/docker-acestream-aceserve/issues
+port: 6878
 gallery:
   - 1.jpg
   - 2.jpg
   - 3.jpg
 path: ""
-torOnly: false
 submitter: Aitronz
-submission: https://github.com/getumbrel/umbrel/commit/dcaae95daa8ee3d7e8044d55d13887d8ff353030
+submission: https://github.com/aitronz/aitronz-custom

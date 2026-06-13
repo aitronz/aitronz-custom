@@ -1,18 +1,11 @@
-version: '3.8'
+version: "3.7"
 
 services:
-  acexy:
-    image: ghcr.io/javinator9889/acexy
-    container_name: acexy
-    network_mode: host
-    command: ["-addr", ":7171"]
-    restart: unless-stopped
-    tty: true
-    stdin_open: true
-    depends_on:
-          - acestream
-  acestream:
-    container_name: acestream
+  aceserve:
+    image: jopsis/aceserve:v3.2.17-fix
+    container_name: aceserve
     ports:
-        - 6878:6878
-    image: jopsis/acestream:arm64-v3.2.13
+      - "6878:6878"
+      - "8621:8621"
+      - "62062:62062"
+    restart: unless-stopped

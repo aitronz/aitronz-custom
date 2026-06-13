@@ -1,22 +1,22 @@
 manifestVersion: 1.1
 id: aitronz-streamflow
-category: files
+category: media
 name: StreamFlow
 version: "1"
 tagline: StreamFlow for Umbrel (arm)
-description: StreamFlow Service
-releaseNotes: https://www.acestream.org
-developer: https://www.acestream.org
-website: https://www.acestream.org
+description: Fetch-add-check-reorder pipeline for Dispatcharr Streams and Channels 
+releaseNotes: https://github.com/krinkuto11/streamflow/releases
+developer: https://github.com/krinkuto11
+website: https://github.com/krinkuto11/streamflow
 dependencies: []
-repo: https://www.acestream.org
-support: https://www.acestream.org
+repo: https://github.com/krinkuto11/streamflow
+support: https://github.com/krinkuto11/streamflow/issues
 port: 5000
 gallery:
   - 1.jpg
   - 2.jpg
   - 3.jpg
 path: ""
-torOnly: false
+icon: https://raw.githubusercontent.com/krinkuto11/streamflow/refs/heads/dev/frontend/public/streamflow-icon-512.png
 submitter: Aitronz
-submission: https://github.com/getumbrel/umbrel/commit/dcaae95daa8ee3d7e8044d55d13887d8ff353030
+submission: https://github.com/aitronz/aitronz-custom
