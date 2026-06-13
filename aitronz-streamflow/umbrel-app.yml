@@ -1,17 +1,17 @@
 manifestVersion: 1.1
-id: aitronz-ace-multi
+id: aitronz-streamflow
 category: files
-name: Acestream Multi
-version: "2.1.0.2"
-tagline: Acestream with orchestration for Umbrel (arm)
-description: Acestream Multi Service
+name: StreamFlow
+version: "1"
+tagline: StreamFlow for Umbrel (arm)
+description: StreamFlow Service
 releaseNotes: https://www.acestream.org
 developer: https://www.acestream.org
 website: https://www.acestream.org
 dependencies: []
 repo: https://www.acestream.org
 support: https://www.acestream.org
-port: 8000
+port: 5000
 gallery:
   - 1.jpg
   - 2.jpg
