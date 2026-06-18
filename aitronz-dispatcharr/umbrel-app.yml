@@ -1,0 +1,22 @@
+manifestVersion: 1.1
+id: aitronz-dispatcharr
+category: media
+name: Dispatcharr
+version: "0.27.0"
+tagline: Dispatcharr for umbrel.
+description: Open-source powerhouse for managing IPTV streams, EPG data, and VOD content with elegance and control.
+releaseNotes: 
+developer: https://github.com/dispatcharr/dispatcharr
+website: https://github.com/dispatcharr/dispatcharr
+dependencies: []
+repo: https://github.com/dispatcharr/dispatcharr
+support: https://github.com/dispatcharr/dispatcharr/issues
+port: 9191
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
+path: ""
+icon: https://raw.githubusercontent.com/Dispatcharr/Dispatcharr/main/frontend/src/images/logo.png
+submitter: Aitronz
+submission:  https://github.com/aitronz/aitronz-custom
