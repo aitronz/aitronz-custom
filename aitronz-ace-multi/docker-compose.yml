@@ -3,7 +3,7 @@ version: "3.7"
 services:
   orchestrator:
     container_name: orchestrator
-    image: ghcr.io/krinkuto11/acestream-orchestrator:v2.1.0.2
+    image: ghcr.io/krinkuto11/acestream-orchestrator:dev
     # Configuration is now handled via the Web UI Settings panel
     # environment:
     #   - API_KEY=optional_api_key
