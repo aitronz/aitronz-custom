@@ -17,6 +17,7 @@ services:
     volumes:
       - ipfs_data:/data/ipfs
       - ipfs_staging:/export
+      - ./001-ipfs-cors.sh:/container-init.d/001-ipfs-cors.sh:ro
     environment:
       - IPFS_PROFILE=server
     restart: unless-stopped
