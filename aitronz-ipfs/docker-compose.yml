@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  ipfs:
+    image: ipfs/kubo:v0.42.0
+    ports:
+      - "4001:4001/tcp"
+      - "4001:4001/udp"
+      - "5001:5001"
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "ipfs", "ping", "-c", "1", "self"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    volumes:
+      - ipfs_data:/data/ipfs
+      - ipfs_staging:/export
+    environment:
+      - IPFS_PROFILE=server
+    restart: unless-stopped
+
+volumes:
+  ipfs_data:
+  ipfs_staging:
+
+networks:
+  default:
+    driver: bridge

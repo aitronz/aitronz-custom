@@ -1,0 +1,18 @@
+manifestVersion: 1.1
+id: aitronz-ipfs
+category: network
+name: IPFS Kubo
+version: "0.42.0"
+tagline: Run your own IPFS node on Umbrel
+description: Kubo is the first IPFS implementation and most widely used one today. It runs an IPFS node with P2P networking, HTTP gateway, and RPC API for decentralized file storage and sharing.
+releaseNotes: https://github.com/ipfs/kubo/releases
+developer: https://github.com/ipfs
+website: https://ipfs.tech
+dependencies: []
+repo: https://github.com/ipfs/kubo
+support: https://github.com/ipfs/kubo/issues
+port: 8080
+gallery: []
+icon: https://user-images.githubusercontent.com/157609/250148884-d6d12db8-fdcf-4be3-8546-2550b69845d8.png
+submitter: Aitronz
+submission: https://github.com/aitronz/aitronz-custom
