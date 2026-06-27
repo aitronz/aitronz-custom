@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: aitronz-dispatcharr
 category: media
 name: Dispatcharr
-version: "0.27.0"
+version: "0.27.1"
 tagline: Dispatcharr for umbrel.
 description: Open-source powerhouse for managing IPTV streams, EPG data, and VOD content with elegance and control.
 releaseNotes: 
