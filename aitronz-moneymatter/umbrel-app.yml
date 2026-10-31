@@ -1,0 +1,17 @@
+manifestVersion: 1
+id: moneymatter
+name: MoneyMatter
+tagline: Gestor de finanzas personales, presupuestos e inversiones
+icon: https://raw.githubusercontent.com/letehaha/moneymatter/main/public/favicon.ico
+category: Finance
+version: "1.0.0"
+port: 8080
+description: >-
+MoneyMatter es una solución open-source para controlar cuentas bancarias, presupuestos por categorías y carteras de inversión (acciones, ETFs y fondos) con actualización automática de cotizaciones de mercado por ISIN o Ticker.
+developer: letehaha
+website: https://github.com/letehaha/moneymatter
+repo: https://github.com/letehaha/moneymatter
+support: https://github.com/letehaha/moneymatter/issues
+gallery: []
+path: ""
+defaultPassword: ""
