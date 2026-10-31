@@ -1,16 +1,100 @@
-version: "3.7"
+version: '3.8'
+
+name: aitronz-moneymatter
 
 services:
-app_proxy:
-environment:
-APP_HOST: moneymatter_web_1
-APP_PORT: 8080
+  frontend:
+    image: letehaha/budget-tracker-fe:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      IS_SELF_HOST: 'true'
+      SKIP_LANDING: 'true'
+      LISTEN_PORT: '80'
+      BACKEND_URL: http://backend:8081
+      API_VER: /api/v1
 
-web:
-image: letehaha/moneymatter:latest
-restart: on-failure
-environment:
-- NODE_ENV=production
-- PORT=8080
-volumes:
-- ${APP_DATA_DIR}/data:/app/data
+  backend:
+    image: letehaha/budget-tracker-be:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    expose:
+      - "8081"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      currency-rates-api:
+        condition: service_healthy
+    volumes:
+      - ${APP_DATA_DIR}/data/attachments:/app/packages/backend/data/attachments
+    environment:
+      IS_SELF_HOST: 'true'
+      SYSTEM_DEMO_DISABLED: 'true'
+      APPLICATION_PORT: '8081'
+      APPLICATION_DB_HOST: db
+      APPLICATION_DB_PORT: '5432'
+      APPLICATION_DB_USERNAME: moneymatter
+      APPLICATION_DB_PASSWORD: moneymatter_secure_password
+      APPLICATION_DB_DATABASE: moneymatter
+      REDIS_HOST: redis
+      REDIS_PORT: '6379'
+      CURRENCY_RATES_API_URL: http://currency-rates-api:8080
+      ATTACHMENTS_DIR: /app/packages/backend/data/attachments
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8081/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    volumes:
+      - ${APP_DATA_DIR}/data/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: moneymatter
+      POSTGRES_PASSWORD: moneymatter_secure_password
+      POSTGRES_DB: moneymatter
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    volumes:
+      - ${APP_DATA_DIR}/data/redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  currency-rates-api:
+    image: letehaha/currency-rates-api:latest
+    restart: unless-stopped
+    volumes:
+      - ${APP_DATA_DIR}/data/currency_rates:/app/data
+    environment:
+      DATABASE_URL: sqlite:/app/data/currency_rates.db?mode=rwc
+      HOST: 0.0.0.0
+      PORT: '8080'
+      DEFAULT_API_BASE: USD
+      SEED_ON_STARTUP: 'true'
+      SYNC_ON_STARTUP: 'true'
+      SYNC_CRON: '0 0 8,12,16,20 * * *'
+      RUST_LOG: currency_rates=info,tower_http=info
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
